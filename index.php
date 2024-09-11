@@ -1,5 +1,6 @@
 <?php
 require ("logica/Producto.php");
+require ("logica/Categoria.php");
 ?>
 <html>
 <head>
@@ -42,8 +43,16 @@ require ("logica/Producto.php");
 						href="#" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">Categoria</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Categoria 1</a></li>
-							<li><a class="dropdown-item" href="#">Categoria 2</a></li>
+							<?php
+							
+							$categoria = new Categoria();
+							$categorias = $categoria->consultarTodos();
+							foreach ($categorias as $categoriaActual) {
+								echo "<li><a class='dropdown-item' href='#'>" . $categoriaActual . "</a></li>";
+							}
+
+							?>
+							
 						</ul></li>
 				</ul>
 			</div>
@@ -56,6 +65,7 @@ require ("logica/Producto.php");
 					<div class="card-header text-bg-info">Tienda Anonima</div>
 					<div class="card-body">
     					<?php
+						
     					$i=0;
                         $producto = new Producto();
                         $productos = $producto->consultarTodos();
