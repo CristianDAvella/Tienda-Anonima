@@ -1,11 +1,15 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 class Conexion{
     private $mysqlConexion;
     private $resultado;
     
     public function abrirConexion(){
-        $this -> mysqlConexion = new mysqli("localhost", "root", "", "tiendaanonima");
+        $this -> mysqlConexion = new mysqli("localhost", "root", $_ENV['DB_PASSWORD'], "tiendaanonima");
     }
     
     public function ejecutarConsulta($sentenciaSQL){

@@ -1,6 +1,7 @@
 <?php
 require ("logica/Producto.php");
 require ("logica/Categoria.php");
+require ("logica/Marca.php");
 ?>
 <html>
 <head>
@@ -34,8 +35,13 @@ require ("logica/Categoria.php");
 						href="#" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">Marca</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Marca 1</a></li>
-							<li><a class="dropdown-item" href="#">Marca 2</a></li>
+							<?php 
+								$marca = new Marca();
+								$marcas = $marca -> consultarTodos();
+								foreach ($marcas as $marcaActual) {
+									echo "<li><a class='dropdown-item' href='#'>" . $marcaActual -> getNombre() . "</a></li>"; 
+								}
+                            ?>
 						</ul></li>
 				</ul>
 				<ul class="navbar-nav">
