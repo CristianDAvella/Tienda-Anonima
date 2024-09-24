@@ -8,6 +8,8 @@ class Producto{
     private $cantidad;
     private $precioCompra;
     private $precioVenta;
+    private $marca;
+    private $categoria;
 
     public function getIdProducto() {
         return $this->idProducto;
@@ -29,6 +31,13 @@ class Producto{
         return $this->precioVenta;
     }
 
+    public function getmarca () {
+        return $this->marca;
+    }
+
+    public function getcategoria () {
+        return $this->categoria;
+    }
     public function setIdProducto($idProducto){
         $this->idProducto = $idProducto;
     }
@@ -49,12 +58,21 @@ class Producto{
         $this->precioVenta = $precioVenta;
     }
 
-    public function __construct($idProducto=0, $nombre="", $cantidad=0, $precioCompra=0, $precioVenta=0){
+    public function setmarca($marca){
+        $this->marca = $marca;
+    }
+
+    public function setcategoria($categoria){
+        $this->categoria = $categoria;
+    }
+    public function __construct($idProducto=0, $nombre="", $cantidad=0, $precioCompra=0, $precioVenta=0, $marca="", $categoria=""){
         $this -> idProducto = $idProducto;
         $this -> nombre = $nombre;
         $this -> cantidad = $cantidad;
         $this -> precioCompra = $precioCompra;
         $this -> precioVenta = $precioVenta;
+        $this -> marca = $marca;
+        $this -> categoria = $categoria;
     }
     
     public function consultarTodos(){
@@ -64,7 +82,7 @@ class Producto{
         $productoDAO = new ProductoDAO();
         $conexion -> ejecutarConsulta($productoDAO -> consultarTodos());
         while($registro = $conexion -> siguienteRegistro()){
-            $producto = new Producto($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
+            $producto = new Producto($registro[0], $registro[1], $registro[2], $registro[3], $registro[4], $registro[5], $registro[6]);
             array_push($productos, $producto);
         }
         $conexion -> cerrarConexion();
