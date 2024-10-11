@@ -3,7 +3,6 @@ require_once ("./persistencia/Conexion.php");
 require ("./persistencia/CategoriaDAO.php");
 
 class Categoria{
-    
     private $idCategoria;
     private $nombre;
 
@@ -27,8 +26,7 @@ class Categoria{
         $this -> idCategoria = $idCategoria;
         $this -> nombre = $nombre;
     }
-
-
+    
     public function consultarTodos(){
         $categorias = array();
         $conexion = new Conexion();
@@ -37,13 +35,12 @@ class Categoria{
         $conexion -> ejecutarConsulta($categoriaDAO -> consultarTodos());
         while($registro = $conexion -> siguienteRegistro()){
             $categoria = new Categoria($registro[0], $registro[1]);
-            array_push($categorias, $categoria -> getNombre());
+            array_push($categorias, $categoria);
         }
         $conexion -> cerrarConexion();
-
         return $categorias;        
     }
-
+    
 }
 
 ?>
