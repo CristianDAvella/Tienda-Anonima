@@ -14,6 +14,14 @@ class ProductoDAO{
         $this -> precioVenta = $precioVenta;
     }
     
+    // Método para insertar un nuevo producto en la base de datos
+    public function crearProducto(){
+        return "INSERT INTO Producto (nombre, cantidad, precioCompra, precioVenta) VALUES (
+                '" . $this -> nombre . "',
+                " . $this -> cantidad . ",
+                " . $this -> precioCompra . ",
+                " . $this -> precioVenta . ")";
+    }
     public function consultarTodos(){
         return "select idProducto, nombre, cantidad, precioCompra, precioVenta, Marca_idMarca 
                 from Producto";

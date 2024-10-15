@@ -68,6 +68,14 @@ class Producto{
         $this -> marca = $marca;
     }
     
+    // Método para crear un nuevo producto
+    public function crear(){
+        $conexion = new Conexion();
+        $conexion -> abrirConexion();
+        $productoDAO = new ProductoDAO($this -> idProducto, $this -> nombre, $this -> cantidad, $this -> precioCompra, $this -> precioVenta);
+        $conexion -> ejecutarConsulta($productoDAO -> crearProducto());
+        $conexion -> cerrarConexion();
+    }
     public function consultarTodos(){
         $marcas = array();
         $productos = array();
